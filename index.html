@@ -1,13 +1,751 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="jp">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>ATAGO HOTEL</title>
+    <link href="/src/img/index/favicon.png" rel="icon" type="image/x-icon">
+    <link href="/src/css/output.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet">
 </head>
-<body>
-    <h1>Coming soon ...</h1>
-    <br><br>
-    <h1>ATAGO HOTEL</h1>
+
+<body class="text-white bg-black">
+    <!-- Navbar-->
+    <header id="navbar" class="fixed top-0 left-0 w-full flex bg-transparent z-50 transition-all duration-300">
+        <div class="w-full relative flex items-center justify-between px-6 md:px-10">
+            <div>
+                <a href="#home"><img src="src/img/index/logo.png" alt="logo" class="w-56 py-6"></a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button id="hamburger" name="hamburger" type="button" class="block absolute right-4 lg:hidden">
+                    <span class="hamburger-line transition duration-300 ease-in-out origin-top-left"></span>
+                    <span class="hamburger-line transition duration-300 ease-in-out"></span>
+                    <span class="hamburger-line transition duration-300 ease-in-out origin-bottom-left"></span>
+                </button>
+
+                <nav id="nav-menu"
+                    class="hidden absolute py-3 max-w-[250px] right-4 top-full lg:block lg:static lg:max-w-full">
+                    <ul class="block items-center lg:flex lg:justify-evenly">
+                        <li class="group">
+                            <a href="#rooms" class="py-3 px-3 flex group-hover:underline">
+                                <span lang="ja" class="font-jp text-lg">部屋</span>
+                                <span lang="en" class="font-en text-xl">Rooms</span>
+                            </a>
+                        </li>
+                        <li class="group">
+                            <div class="relative inline-block text-left" id="dropdown-container" data-close-delay="250">
+                                <!-- Tombol Trigger -->
+                                <button id="dropdown-toggle" type="button"
+                                    class="inline-flex justify-center w-full px-3 py-3 group-hover:underline"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    <span lang="ja" class="font-jp text-lg">レストラン</span>
+                                    <span lang="en" class="font-en text-xl">Restaurant</span>
+                                    <!-- Heroicon: chevron-down -->
+                                    <svg class="-mr-1 ml-1 size-5" xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                        <path fill-rule="evenodd"
+                                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                                <!-- Dropdown Menu -->
+                                <div id="dropdown-menu"
+                                    class="origin-top-right absolute left-0  w-44 hidden z-10 bg-black/50 backdrop-blur-3xl"
+                                    role="menu" aria-orientation="vertical" aria-labelledby="dropdown-toggle"
+                                    tabindex="-1">
+                                    <div class="py-1" role="none">
+                                        <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
+                                        <a href="#" class="block px-3 py-1 hover:underline" role="menuitem"
+                                            tabindex="-1" id="menu-item-0">
+                                            <span lang="ja" class="font-jp text-base">レストラン アラク</span>
+                                            <span lang="en" class="font-en text-lg">Restaurant ALAC</span>
+                                        </a>
+                                        <a href="#" class="block px-3 py-1 hover:underline" role="menuitem"
+                                            tabindex="-1" id="menu-item-1">
+                                            <span lang="ja" class="font-jp text-base">パティスリー</span>
+                                            <span lang="en" class="font-en text-lg">Patisserie</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="group">
+                            <a href="#faq" class="py-3 px-3 flex group-hover:underline">
+                                <span lang="ja" class="font-jp text-lg">よくある質問</span>
+                                <span lang="en" class="font-en text-xl">FAQ</span>
+                            </a>
+                        </li>
+                        <li class="group">
+                            <a href="#faq" class="py-3 px-3 flex group-hover:underline">
+                                <span lang="ja" class="font-jp text-lg">アクセス</span>
+                                <span lang="en" class="font-en text-xl">Access</span>
+                            </a>
+                        </li>
+                        <li class="group">
+                            <a href="#contact" class="py-3 px-3 flex group-hover:underline">
+                                <span lang="ja" class="font-jp text-lg">お問い合わせ</span>
+                                <span lang="en" class="font-en text-xl">Contact</span>
+                            </a>
+                        </li>
+                        <button id="lang-toggle-btn" type="button" aria-label="change language" data-current-lang="ja"
+                            class="py-3 px-3 rounded-md bg-transparent transition ease-in-out duration-150">
+                            <img id="lang-toggle-flag" src="/src/img/index/flag-en.svg" alt=""
+                                class="h-7 w-auto object-contain">
+                        </button>
+                        <li id="hidden-menu"
+                            class="group rounded-full border py-1 px-4 text-lg bg-white/30 border-white/30 hover:bg-transparent hover:underline lg:ml-5">
+                            <a href="https://d-reserve.jp/GSEA001F01300/GSEA001A01?hotelCode=0000001998" class="">
+                                <span lang="ja" class="font-jp text-lg">予約する</span>
+                                <span lang="en" class="font-en text-xl">Reserve</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Reserve Button -->
+    <div id="reserve-button" class="fixed bottom-20 right-4 z-50 hidden">
+        <a href="https://d-reserve.jp/GSEA001F01300/GSEA001A01?hotelCode=0000001998"
+            class="rounded-full border text-lg bg-black/10 backdrop-blur-2xl hover:bg-white/30 hover:underline hover:backdrop-blur-none py-2 px-4">
+            <span lang="ja" class="font-jp text-lg">予約する</span>
+            <span lang="en" class="font-en text-xl">Reserve</span>
+        </a>
+    </div>
+
+    <!-- Hero Section-->
+    <section class="h-screen overflow-hidden">
+        <div class="relative w-full h-full">
+            <div id="hero-bg-1" class="hero-bg absolute inset-0 z-0"
+                style="background-image: url('src/img/index/hero-1.jpg');"></div>
+            <div id="hero-bg-2" class="hero-bg absolute inset-0 z-0 opacity-0"
+                style="background-image: url('src/img/index/hero-2.jpg');"></div>
+            <div id="hero-bg-3" class="hero-bg absolute inset-0 z-0 opacity-0"
+                style="background-image: url('src/img/index/hero-3.jpg');"></div>
+            <div class="absolute inset-0 bg-black/40"></div>
+            <div class="relative z-10 h-full">
+                <div data-aos="fade-right" data-aos-duration="1000"
+                    class="h-36 w-3/5 lg:w-3/4 absolute bottom-10 md:left-10 flex flex-col gap-2 lg:gap-4 items-start px-6">
+                    <h1>
+                        <span lang="ja"
+                            class="font-jp text-3xl md:text-4xl xl:text-5xl font-normal">関東平野の中心で味わう、純粋な贅沢</span>
+                        <span lang="en" class="font-en text-3xl md:text-4xl xl:text-5xl font-semibold">Pure Luxury in
+                            the Heart of Noda City</span>
+                    </h1>
+                    <h3>
+                        <span lang="ja" class="font-jp text-xl md:text-2xl xl:text-3xl font-normal">忘れられないご滞在を</span>
+                        <span lang="en" class="font-en text-xl md:text-2xl xl:text-3xl font-semibold">Experience an
+                            Unforgettable Stay</span>
+                    </h3>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Consept Section -->
+    <section class="relative w-full h-[700px] bg-[url('/src/img/index/bg-concept.jpg')] bg-cover bg-center">
+        <div class="absolute inset-0 bg-black/10 bg-gradient-to-b from-black/70 to-black/100">
+        </div>
+        <div class="absolute z-10">
+            <div class="lg:mx-20 pt-20">
+                <div class="w-1/2 text-4xl mt-20" data-aos="fade-up" data-aos-duration="1000">
+                    <h1>
+                        <span lang="ja" class="font-jp text-3xl font-semibold">千葉県近郊の高級ホテルへようこそ</span>
+                        <span lang="en" class="font-en text-4xl font-semibold">Welcome to the luxury hotel near
+                            <br>Chiba Prefecture</span>
+                    </h1>
+                </div>
+                <div class="w-4/5 mt-14" data-aos="fade-up" data-aos-duration="1000">
+                    <p class="pt-6">
+                        <span lang="ja"
+                            class="font-jp text-lg font-normal">都会の喧騒から逃れ至福のひとときを過ごせる隠れ家的なオアシス。忙しい日常から解放され心身をリラックスさせるためのラグジュアリーホテル
+                            <span class="font-en">ATAGO HOTEL</span></span>
+                        <span lang="en" class="font-en text-xl font-normal">A hidden oasis where you can escape the
+                            hustle and bustle of the city and spend blissful moments. The luxury ATAGO HOTEL, where you
+                            can escape from your busy daily life and relax your
+                            mind and body.</span>
+                    </p>
+                    <p class="pt-6" data-aos="fade-up" data-aos-duration="1000">
+                        <span lang="ja"
+                            class="font-jp text-lg font-normal">季節の草花が風にそよぐモダンガーデンを眺めるくつろぎのダイニング。美味しいお料理をこだわりのワインで楽しみながら、心地良いピアノの音色に包まれる至福のひとときを過ごす最高級レストラン
+                            <span class="font-en">Restaurant ALAC</span></span>
+                        <span lang="en" class="font-en text-xl font-normal">Relaxing dining experience overlooking a
+                            modern garden where seasonal flowers sway in the breeze. Enjoy exquisite cuisine with
+                            carefully selected wines, while being enveloped in the
+                            soothing melodies of a piano, at the supreme Restaurant ALAC.</span>
+                    </p>
+                    <P class="pt-6" data-aos="fade-up" data-aos-duration="1000">
+                        <span lang="ja"
+                            class="font-jp text-lg font-normal">心地よい時間が流れる千葉野田のオアシスで心身ともにリフレッシュできる贅沢な時間をぜひご堪能ください。</span>
+                        <span lang="en" class="font-en text-xl font-normal">Indulge in a luxurious time to refresh both
+                            your mind and body in the oasis of Chiba Noda, where a pleasant time flows.</span>
+                    </P>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rooms Section -->
+    <section class="relative w-full h-[800px] bg-[url('/src/img/index/bg-room.jpg')] bg-cover bg-center">
+        <div class="absolute inset-0 bg-black/50 bg-gradient-to-b from-black/70 to-black/70">
+        </div>
+        <div class="absolute z-10 flex justify-center items-center gap-16 mt-40">
+            <div class="relative w-1/4" data-aos="zoom-in-right" data-aos-duration="1000">
+                <h1>
+                    <span lang="ja" class="font-jp text-3xl font-semibold">お部屋</span>
+                    <span lang="en" class="font-en text-3xl font-semibold">ROOMS</span>
+                </h1>
+                <p class="font-normal text-xl mt-10 mb-12">
+                    <span lang="ja"
+                        class="font-jp text-lg">上質な寛ぎを追求した4つの客室タイプをご用意。厳選されたリネンと贅沢なアメニティ、細部にまでこだわり抜いたお部屋でゆっくりお過ごしください。</span>
+                    <span lang="en" class="font-en text-xl">We offer four room types designed for the ultimate in
+                        relaxation. Please unwind in rooms featuring carefully selected linens, luxurious amenities, and
+                        meticulous attention to detail.</span>
+                </p>
+                <div
+                    class="font-normal text-base text-center w-36 border rounded-full p-2 text-gray-300 hover:text-white hover:bg-white/20">
+                    <a href="#" class="">
+                        <span lang="ja" class="font-jp text-sm">部屋の概要</span>
+                        <span lang="en" class="font-en text-base">Room overview</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" fill="none"
+                            stroke-width="2.5" aria-hidden="true" class="inline size-4">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3">
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="max-w-2xl" data-aos="zoom-in-left" data-aos-duration="1000">
+                <!-- Max width bisa disesuaikan agar pas 2 kartu -->
+                <!-- Kontainer Slider (Viewport) -->
+                <div id="sliderViewport" class="overflow-hidden relative">
+                    <div id="sliderTrack" class="flex transition-transform duration-500 ease-in-out gap-6">
+
+                        <!-- Card 1 -->
+                        <!-- Ubah w-full lg:w-1/3 menjadi w-full sm:w-1/2 -->
+                        <div class="flex-shrink-0 w-full sm:w-1/2">
+                            <div class="bg-transparent overflow-hidden">
+                                <img class="w-full h-64 object-cover rounded-lg" src="src/img/room/suite-1.jpg"
+                                    alt="suite room view">
+                                <div class="px-2 py-5 text-white">
+                                    <h3 class="mb-3">
+                                        <span lang="ja" class="font-jp text-lg font-bold">スイートルーム</span>
+                                        <span lang="en" class="font-en text-xl font-semibold">Suite Room</span>
+                                    </h3>
+                                    <p>
+                                        <span lang="ja"
+                                            class="font-jp text-base">広々としたリビングからくつろぎのベッドルームと贅沢なバスルームまで、上質な空間が心地よい滞在をお約束します。</span>
+                                        <span lang="en" class="font-en text-lg">From the spacious living room to the
+                                            relaxing bedroom and luxurious bathroom.</span>
+                                    </p>
+                                    <div class="border-t border-white w-10 mt-1 mb-4"></div>
+                                    <a href="#" class="text-gray-300 hover:text-white hover:underline">
+                                        <span lang="ja" class="font-jp text-sm">詳細を表示</span>
+                                        <span lang="en" class="font-en text-sm">Show details</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <!-- Ubah w-full lg:w-1/3 menjadi w-full sm:w-1/2 -->
+                        <div class="flex-shrink-0 w-full sm:w-1/2">
+                            <div class="bg-transparent overflow-hidden">
+                                <img class="w-full h-64 object-cover rounded-lg" src="src/img/room/jrSuite-1.jpg"
+                                    alt="junior suite room view">
+                                <div class="px-2 py-5 text-white">
+                                    <h3 class="mb-3">
+                                        <span lang="ja" class="font-jp text-lg font-bold">ジュニアスイートルーム</span>
+                                        <span lang="en" class="font-en text-xl font-semibold">Junior Suite Room</span>
+                                    </h3>
+                                    <p>
+                                        <span lang="ja"
+                                            class="font-jp text-base">洗練されたリビングルームから落ち着きのあるベッドルーム。細部にこだわったお部屋でお過ごしいただけます。</span>
+                                        <span lang="en" class="font-en text-lg">From the sophisticated living room to
+                                            the tranquil bedroom, relax in a room with attention to detail.</span>
+                                    </p>
+                                    <div class="border-t border-white w-10 mt-1 mb-4"></div>
+                                    <a href="#" class="text-gray-300 hover:text-white hover:underline">
+                                        <span lang="ja" class="font-jp text-sm">詳細を表示</span>
+                                        <span lang="en" class="font-en text-sm">Show details</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <!-- Ubah w-full lg:w-1/3 menjadi w-full sm:w-1/2 -->
+                        <div class="flex-shrink-0 w-full sm:w-1/2">
+                            <div class="bg-transparent overflow-hidden">
+                                <img class="w-full h-64 object-cover rounded-lg" src="src/img/room/twin-1.jpg"
+                                    alt="twin room view">
+                                <div class="px-2 py-5 text-white">
+                                    <h3 class="mb-3">
+                                        <span lang="ja" class="font-jp text-lg font-bold">ツインルーム</span>
+                                        <span lang="en" class="font-en text-xl font-semibold">Twin Room</span>
+                                    </h3>
+                                    <p>
+                                        <span lang="ja"
+                                            class="font-jp text-base">ゆったりとした空間に快適なハリウッドツインベッドを配置。心地よい滞在をお楽しみください。</span>
+                                        <span lang="en" class="font-en text-lg">The spacious rooms are equipped with
+                                            comfortable Hollywood twin beds.</span>
+                                    </p>
+                                    <div class="border-t border-white w-10 mt-1 mb-4"></div>
+                                    <a href="#" class="text-gray-300 hover:text-white hover:underline">
+                                        <span lang="ja" class="font-jp text-sm">詳細を表示</span>
+                                        <span lang="en" class="font-en text-sm">Show details</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 4 -->
+                        <!-- Ubah w-full lg:w-1/3 menjadi w-full sm:w-1/2 -->
+                        <div class="flex-shrink-0 w-full sm:w-1/2">
+                            <div class="bg-transparent overflow-hidden">
+                                <img class="w-full h-64 object-cover rounded-lg" src="src/img/room/double-1.jpg"
+                                    alt="double room view">
+                                <div class="px-2 py-5 text-white">
+                                    <h3 class="mb-3">
+                                        <span lang="ja" class="font-jp text-lg font-bold">ダブルルーム</span>
+                                        <span lang="en" class="font-en text-xl font-semibold">Double Room</span>
+                                    </h3>
+                                    <p>
+                                        <span lang="ja" class="font-jp text-base">キングサイズベッドで、快適な眠りと贅沢なくつろぎのひとときを。</span>
+                                        <span lang="en" class="font-en text-lg">Enjoy a comfortable sleep and luxurious
+                                            relaxation in our king-size beds.</span>
+                                    </p>
+                                    <div class="border-t border-white w-10 mt-1 mb-4"></div>
+                                    <a href="#" class="text-gray-300 hover:text-white hover:underline">
+                                        <span lang="ja" class="font-jp text-sm">詳細を表示</span>
+                                        <span lang="en" class="font-en text-sm">Show details</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Counter & Navigasi -->
+                <div class="flex justify-end items-center mt-4 space-x-4 font-en">
+                    <span id="sliderCounter" class="text-xl">1 / 2</span> <!-- Updated placeholder -->
+                    <div class="flex space-x-2">
+                        <button id="prevButton" aria-label="Previous slide"
+                            class="w-8 h-8 rounded-full border border-gray-100 text-white hover:bg-white/20 flex items-center justify-center transition duration-150 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="w-4 h-4">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                            </svg>
+                        </button>
+                        <button id="nextButton" aria-label="Next slide"
+                            class="w-8 h-8 rounded-full border border-gray-100 text-white hover:bg-white/20 hover:text-white flex items-center justify-center transition duration-150 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="w-4 h-4">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Restaurant Section -->
+    <section class="relative w-full h-[1500px] bg-[url('/src/img/index/bg-restaurant1.jpg')] bg-cover bg-center">
+        <div class="absolute inset-0 bg-black/50 bg-gradient-to-b from-black/60 to-black/100"></div>
+        <div class="absolute z-10 pt-6">
+
+            <div class="flex flex-col justify-center items-center mt-14">
+                <div class="w-2/4 text-center flex flex-col items-center">
+                    <p>
+                        <span lang="ja" class="font-jp text-lg font-normal">芸術で満たされた皿、詩で満たされたグラス</span>
+                        <span lang="en" class="font-en text-xl font-normal">A plate full of art, a glass full of
+                            poetry</span>
+                    </p>
+                    <p class="w-5/6 mt-3">
+                        <span lang="ja" class="font-jp text-2xl font-bold">千葉県近郊の贅沢な休暇でグルメ体験</span>
+                        <span lang="en" class="font-en text-3xl font-semibold">Gourmet experiences on your luxury
+                            holidays near the Chiba Prefecture</span>
+                    </p>
+                    <p class="mt-4">
+                        <span lang="ja"
+                            class="font-jp text-lg font-normal">極上の風味、ジューシーな食感、厳選された食材、そして芸術作品ともいえる洗練された盛り付け。これらが、当レストランのグルメの醍醐味を構成する要素です。最高級のワインが、お客様のグルメの旅を締めくくります。</span>
+                        <span lang="en" class="font-en text-xl font-normal">The finest flavours, succulent textures,
+                            carefully selected ingredients, and a refined presentation that resembles a work of art:
+                            these are the components of our restaurants’ gourmet delights. The
+                            finest wines round off your gourmet journey.</span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="relative w-full h-[550px] mt-24">
+                <img src="/src/img/restaurant/resto-3.png" alt="main dish" class="block object-cover w-2/6">
+                <div data-aos="fade-right" data-aos-duration="1000"
+                    class="absolute text-lg font-semibold [filter:drop-shadow(0_2px_3px_rgba(0,0,0,0.7))] left-1/4 right-2/5 top-1/4 pl-8">
+                    <h3 class="font-en text-3xl mb-4">
+                        Restaurant ALAC
+                    </h3>
+                    <p>
+                        <span lang="ja"
+                            class="font-jp text-lg">「最高の料理を最高のサービスで」をコンセプトにフランス料理の技法を駆使し、千葉県の食材を豊富に使用した西洋料理をご提供します。</span>
+                        <span lang="en" class="font-en text-xl">Based on the concept of "the best food with the best
+                            service," we offer Western cuisine using French cooking techniques and an abundance of
+                            ingredients from Chiba Prefecture.</span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="relative w-full h-[550px] -mt-24">
+                <img src="/src/img/restaurant/resto8.png" alt="main dish"
+                    class="absolute block object-cover w-2/6 right-0">
+                <div data-aos="fade-left" data-aos-duration="1000"
+                    class="absolute text-lg font-semibold [filter:drop-shadow(0_2px_3px_rgba(0,0,0,0.7))] left-2/5 right-1/4 top-1/4">
+                    <h3 class="font-en text-3xl mb-4">
+                        Patisserie
+                    </h3>
+                    <p class="text-xl">
+                        <span lang="ja"
+                            class="font-jp text-lg">香ばしいパンから、サクッと心地よいパン、香豊かなパンまで。さらに、繊細な甘さの焼き菓子をはじめ、スイーツの魅力も存分にお楽しみいただけます。美味しさを追求する武井の技が生み出す、感動の一口を是非ご堪能ください。</span>
+                        <span lang="en" class="font-en text-xl">From fragrant bread to crispy and aromatic bread. You
+                            can also enjoy the charms of
+                            sweets, including delicately sweet baked goods. Please enjoy the amazing bites created by
+                            Takei's techniques in pursuit of
+                            deliciousness.</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chef Section -->
+    <section class="relative w-full h-[600px] bg-[url('/src/img/index/bg-restaurant21.jpg')] bg-cover bg-center">
+        <div class="absolute inset-0 bg-black/10 bg-gradient-to-b from-black/100 to-black/30"></div>
+        <div class="absolute z-10 w-full flex flex-col justify-center items-center">
+            <h3 class="font-en text-4xl font-semibold">Chefs</h3>
+            <div class="w-full flex justify-evenly items-center text-center mt-16">
+                <div class="block">
+                    <img alt="chef" src="src/img/restaurant/chef-01.jpg" class="size-64 rounded-full object-cover">
+                    <h3 class="mt-6">
+                        <span lang="ja" class="font-jp text-2xl">野口 尚人</span>
+                        <span lang="en" class="font-en text-2xl">NAOTO NOGUCHI</span>
+                    </h3>
+                    <p class="font-en mt-2 text-xl" data-aos="zoom-in" data-aos-duration="1000">
+                        Executive Chef
+                    </p>
+                </div>
+
+                <div class="block">
+                    <img alt="chef" src="src/img/restaurant/chef-02.jpg" class="size-64 rounded-full object-cover">
+                    <h3 class="mt-6">
+                        <span lang="ja" class="font-jp text-2xl">武井 慎弥</span>
+                        <span lang="en" class="font-en text-2xl">SHINYA TAKEI</span>
+                    </h3>
+                    <p class="font-en mt-2 text-xl" data-aos="zoom-in" data-aos-duration="1000">
+                        Chef de Patisserie
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section
+        class="relative w-full h-[1200px] bg-[url('/src/img/index/bg-faq.jpg')] bg-cover bg-center flex flex-col items-center">
+        <div class="absolute inset-0 bg-black/10 bg-gradient-to-b from-black/100 to-black/70"></div>
+        <div class="absolute z-10 w-3/4 flex flex-col justify-center items-center">
+            <div class="w-3/4 space-y-8 mt-30 mb-10">
+                <h1 class=" text-4xl text-center mb-14" data-aos="fade-up" data-aos-duration="1000">
+                    <span lang="ja" class="font-jp text-3xl font-semibold">よくあるご質問</span>
+                    <span lang="en" class="font-en text-4xl font-bold">Frequently Asked Questions</span>
+                </h1>
+                <details data-aos="fade-up" data-aos-duration="1000"
+                    class="group border-s-4 border border-white bg-white/20 p-4 rounded-br-3xl rounded-tl-3xl [&_summary::-webkit-details-marker]:hidden"
+                    open>
+                    <summary class="flex items-center justify-between gap-1.5">
+                        <h2>
+                            <span lang="ja" class="font-jp text-lg font-semibold">チェックインとチェックアウトの時間は何時ですか？</span>
+                            <span lang="en" class="font-en text-xl font-bold">What are the check-in and check-out
+                                times?</span>
+                        </h2>
+                        <svg class="size-5 shrink-0 transition-transform duration-300 group-open:-rotate-180"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </summary>
+
+                    <p class="pt-8">
+                        <span lang="ja" class="font-jp text-lg">チェックイン15:00 - 24:00、チェックアウト11:00となっております。
+                            （宿泊プランによって異なる場合がございますので、詳細は各宿泊プランをご確認ください）</span>
+                        <span lang="en" class="font-en text-xl">Check-in is from 15:00 to 23:00, and check-out is at
+                            11:00.
+                            (This may vary depending on the accommodation plan, so please check each accommodation plan
+                            for
+                            details)</span>
+                    </p>
+                </details>
+
+                <details data-aos="fade-up" data-aos-duration="1000"
+                    class="group border-s-4 border border-white bg-white/20 p-4 rounded-br-3xl rounded-tl-3xl [&_summary::-webkit-details-marker]:hidden">
+                    <summary class="flex items-center justify-between gap-1.5">
+                        <h2>
+                            <span lang="ja" class="font-jp text-lg font-semibold">ホテルのレストランではどのような料理を楽しめますか？</span>
+                            <span lang="en" class="font-en text-xl font-bold">What kind of food is available in the
+                                hotel restaurant?</span>
+                        </h2>
+                        <svg class="size-5 shrink-0 transition-transform duration-300 group-open:-rotate-180"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </summary>
+
+                    <p class="pt-8">
+                        <span lang="ja" class="font-jp text-lg">当ホテルのレストランでは、地元の新鮮な食材を使用した、本格的なフランス料理をお楽しみいただけます。</span>
+                        <span lang="en" class="font-en text-xl">Our restaurant serves authentic French cuisine made with
+                            fresh, local ingredients.</span>
+                    </p>
+                </details>
+
+                <details data-aos="fade-up" data-aos-duration="1000"
+                    class="group border-s-4 border border-white bg-white/20 p-4 rounded-br-3xl rounded-tl-3xl [&_summary::-webkit-details-marker]:hidden">
+                    <summary class="flex items-center justify-between gap-1.5">
+                        <h2>
+                            <span lang="ja" class="font-jp text-lg font-semibold">ルームサービスはありますか？</span>
+                            <span lang="en" class="font-en text-xl font-bold">Is room service available?</span>
+                        </h2>
+                        <svg class="size-5 shrink-0 transition-transform duration-300 group-open:-rotate-180"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </summary>
+
+                    <p class="pt-8">
+                        <span lang="ja" class="font-jp text-lg">ルームサービスございません。客室内の冷蔵庫にお飲み物をご用意しております。</span>
+                        <span lang="en" class="font-en text-xl">There is no room service. Drinks are available in the
+                            refrigerator in the guest room.</span>
+                    </p>
+                </details>
+
+                <details data-aos="fade-up" data-aos-duration="1000"
+                    class="group border-s-4 border border-white bg-white/20 p-4 rounded-br-3xl rounded-tl-3xl [&_summary::-webkit-details-marker]:hidden">
+                    <summary class="flex items-center justify-between gap-1.5">
+                        <h2>
+                            <span lang="ja" class="font-jp text-lg font-semibold">ホテル内に ATM はありますか？</span>
+                            <span lang="en" class="font-en text-xl font-bold">Is there an ATM in the hotel?</span>
+                        </h2>
+                        <svg class="size-5 shrink-0 transition-transform duration-300 group-open:-rotate-180"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </summary>
+
+                    <p class="pt-8">
+                        <span lang="ja" class="font-jp text-lg">ホテル内にはご用意しておりませんが、最寄り駅（愛宕駅）に ATM ございます。（セブン銀行）</span>
+                        <span lang="en" class="font-en text-xl">There is no ATM in the hotel, but there is one at the
+                            nearest station (Atago Station) Seven Bank ATM.</span>
+                    </p>
+                </details>
+
+                <details data-aos="fade-up" data-aos-duration="1000"
+                    class="group border-s-4 border border-white bg-white/20 p-4 rounded-br-3xl rounded-tl-3xl [&_summary::-webkit-details-marker]:hidden">
+                    <summary class="flex items-center justify-between gap-1.5">
+                        <h2>
+                            <span lang="ja" class="font-jp text-lg font-semibold">電気自動車の充電器はありますか？</span>
+                            <span lang="en" class="font-en text-xl font-bold">Are there chargers for electric
+                                cars?</span>
+                        </h2>
+                        <svg class="size-5 shrink-0 transition-transform duration-300 group-open:-rotate-180"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </summary>
+
+                    <p class="pt-8">
+                        <span lang="ja" class="font-jp text-lg">当ホテルの駐車場に備えております。</span>
+                        <span lang="en" class="font-en text-xl">It is available in the parking lot.</span>
+                    </p>
+                </details>
+            </div>
+
+            <a href="#" data-aos="fade-up" data-aos-duration="1000"
+                class="ont-normal text-lg text-center w-40 border rounded-full py-2 px-4 text-gray-300 hover:text-white hover:bg-white/20">
+                <span lang="ja" class="font-jp text-lg">詳細</span>
+                <span lang="en" class="font-en text-lg">Others FAQ</span>
+                &nbsp;&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor"
+                    fill="none" stroke-width="2.5" aria-hidden="true" class="inline size-4">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                </svg>
+            </a>
+
+        </div>
+    </section>
+
+    <!-- Access Section -->
+    <section class="w-full h-[800px]">
+        <div class="text-center mt-32">
+            <h1>
+                <span lang="ja" class="font-jp text-3xl font-semibold">アクセス</span>
+                <span lang="en" class="font-en text-3xl font-semibold">ACCESS</span>
+            </h1>
+        </div>
+        <div class="flex justify-around items-center">
+            <div class="w-2/4 mt-16">
+                <img src="/src/img/index/building1.png" alt="building" class="w-full">
+                <div>
+                    <p>
+                        <span lang="ja" class="font-jp text-base">千葉県野田市野田 720-1</span>
+                        <span lang="en" class="font-en text-base">720-1 Noda, Noda City, Chiba Prefecture</span>
+                    </p>
+                </div>
+
+            </div>
+            <div class="w-1/3 flex flex-col items-center mt-16">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1600.3706304989412!2d139.8612083990395!3d35.95053315289427!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6018a3006eae4eb5%3A0x8615d8354e4cd3a9!2sATAGO%20HOTEL!5e0!3m2!1sja!2sjp!4v1744018803209!5m2!1sja!2sjp"
+                    style="border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                    class="w-full h-[400px]">
+                </iframe>
+                <div
+                    class="w-32 p-2 border rounded-full text-center text-gray-300 hover:text-white hover:bg-white/20 mt-8">
+                    <a href="#access">
+                        <span lang="ja" class="font-jp text-base">ご案内</span>
+                        <span lang="en" class="font-en text-base">How to access</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white">
+        <div class="mx-auto max-w-screen-xl px-4 pt-10 pb-10 sm:px-6 lg:px-8 lg:pt-0">
+            <div class="grid grid-cols-1 gap-8 lg:grid-cols-3 border-t border-white pt-12">
+                <div>
+                    <div class="flex justify-center sm:justify-start">
+                        <a href="#home"><img src="/src/img/index/logo.png" alt="logo" class="w-60"></a>
+                    </div>
+                    <p class="mt-6 max-w-md text-center leading-relaxed sm:max-w-xs sm:text-left">
+                        <span lang="ja" class="font-jp text-base font-normal">千葉県野田市野田 720-1</span>
+                        <span lang="en" class="font-en text-base font-normal">720-1 Noda, Noda City, Chiba
+                            Prefecture</span>
+                    </p>
+                    <p class="mt-3">
+                        <span lang="ja" class="font-jp text-base font-normal">電話: 04-7122-8888</span>
+                        <span lang="en" class="font-en text-base font-normal">Telp: 04-7122-8888</span>
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4 lg:col-span-2">
+                    <div class="text-center sm:text-left">
+                        <ul class="mt-8 space-y-4 text-gray-200">
+                            <li>
+                                <a class="transition hover:text-white hover:underline" href="#">
+                                    <span lang="ja" class="font-jp text-base font-normal">ホーム</span>
+                                    <span lang="en" class="font-en text-base font-normal">Home</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="transition hover:text-white hover:underline" href="#">
+                                    <span lang="ja" class="font-jp text-base font-normal">部屋</span>
+                                    <span lang="en" class="font-en text-base font-normal">Rooms</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="transition hover:text-white hover:underline" href="#">
+                                    <span lang="ja" class="font-jp text-base font-normal">レストラン</span>
+                                    <span lang="en" class="font-en text-base font-normal">Restaurant</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="transition hover:text-white hover:underline" href="#">
+                                    <span lang="ja" class="font-jp text-base font-normal">パティスリー</span>
+                                    <span lang="en" class="font-en text-base font-normal">Patisserie</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="text-center sm:text-left">
+                        <ul class="mt-8 space-y-4 text-gray-200">
+                            <li>
+                                <a class="transition hover:text-white hover:underline" href="#">
+                                    <span lang="ja" class="font-jp text-base font-normal">よくある質問</span>
+                                    <span lang="en" class="font-en text-base font-normal">FAQ</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="transition hover:text-white hover:underline" href="#">
+                                    <span lang="ja" class="font-jp text-base font-normal">アクセス</span>
+                                    <span lang="en" class="font-en text-base font-normal">Access</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="transition hover:text-white hover:underline" href="#">
+                                    <span lang="ja" class="font-jp text-base font-normal">お問い合せ</span>
+                                    <span lang="en" class="font-en text-base font-normal">Contact</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="text-center sm:text-left">
+                        <ul class="mt-8 space-y-4 text-gray-200">
+                            <li>
+                                <a class="transition hover:text-white hover:underline" href="#">
+                                    <span lang="ja" class="font-jp text-base font-normal">プライバシーポリシー</span>
+                                    <span lang="en" class="font-en text-base font-normal">Privacy Policy</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="transition hover:text-white hover:underline" href="#">
+                                    <span lang="ja" class="font-jp text-base font-normal">宿泊約款</span>
+                                    <span lang="en" class="font-en text-base font-normal">Terms and Conditions</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="transition hover:text-white hover:underline" href="#">
+                                    <span lang="ja" class="font-jp text-base font-normal">利用規約</span>
+                                    <span lang="en" class="font-en text-base font-normal">Terms of Service</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="transition hover:text-white hover:underline" href="#">
+                                    <span lang="ja" class="font-jp text-base font-normal">会社概要</span>
+                                    <span lang="en" class="font-en text-base font-normal">Company Profile</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="mt-12 border-t border-white pt-6 font-en">
+                <div class="text-center sm:flex sm:justify-between sm:text-left">
+                    <p class="text-lg block sm:inline"> All rights reserved. </p>
+                    <p class="mt-4 text-lg sm:order-first sm:mt-0">Copyright &copy; ATAGO HOTEL</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/src/js/script.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 </body>
+
 </html>

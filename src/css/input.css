@@ -1,0 +1,87 @@
+@import url("https://fonts.googleapis.com/css2?family=Linden+Hill:ital@0;1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-jp: "Noto Serif JP", "serif";
+  --font-en: "Linden Hill", "serif";
+}
+
+@layer components {
+  html[lang="ja"] [lang="en"] {
+    display: none;
+  }
+  html[lang="ja"] [lang="ja"] {
+    display: inline;
+  }
+
+  html[lang="en"] [lang="ja"] {
+    display: none;
+  }
+  html[lang="en"] [lang="en"] {
+    display: inline;
+  }
+
+  .hero-bg {
+    background-size: cover;
+    background-position: center;
+    transition: transform 10s ease-out;
+  }
+
+  .my-container {
+    width: 100%;
+    @media (width >= 40rem) {
+      max-width: 40rem /* 640px */;
+    }
+    @media (width >= 48rem) {
+      max-width: 48rem /* 768px */;
+    }
+    @media (width >= 64rem) {
+      max-width: 64rem /* 1024px */;
+    }
+    @media (width >= 80rem) {
+      max-width: 80rem /* 1280px */;
+    }
+    @media (width >= 90rem) {
+      max-width: 90rem /* 1440px */;
+    }
+  }
+
+  .my-md {
+    @media (width >= 52rem /* 832px */);
+  }
+
+  /* Hamburger Menu */
+  .hamburger-line {
+    @apply w-[25px] h-[2px] my-1.5 block bg-white;
+  }
+
+  .hamburger-active > span:nth-child(1) {
+    @apply rotate-45;
+  }
+
+  .hamburger-active > span:nth-child(2) {
+    @apply scale-0;
+  }
+
+  .hamburger-active > span:nth-child(3) {
+    @apply -rotate-45;
+  }
+
+  #dropdown-menu {
+    transition: opacity 0.15s ease-in-out, transform 0.15s ease-in-out;
+  }
+
+  #dropdown-menu.hidden {
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+  }
+
+  #dropdown-menu:not(.hidden) {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    /* Izinkan interaksi saat terlihat */
+  }
+}
